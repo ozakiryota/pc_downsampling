@@ -50,11 +50,9 @@ void PcVoxelgridFilter::callback(const sensor_msgs::PointCloud2ConstPtr &msg)
 
 void PcVoxelgridFilter::filter(void)
 {
-    pcl::PointCloud<pcl::PointXYZI>::Ptr tmp (new pcl::PointCloud<pcl::PointXYZI>);
 	vg_.setInputCloud(pc_);
 	vg_.setLeafSize(leafsize_, leafsize_, leafsize_);
-	vg_.filter(*tmp);
-	pc_ = tmp;
+	vg_.filter(*pc_);
 }
 
 void PcVoxelgridFilter::publication(std_msgs::Header header)
